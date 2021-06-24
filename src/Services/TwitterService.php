@@ -15,4 +15,14 @@ class TwitterService
     {
         $this->twitterOauth = $twitterOAuth;
     }
+
+    /**
+    * @return array|object
+    */
+    public function tweet(string $tweet)
+    {
+        return $this->twitterOauth->post("statuses/update",
+            ["status" => $tweet]
+        );
+    }
 }
