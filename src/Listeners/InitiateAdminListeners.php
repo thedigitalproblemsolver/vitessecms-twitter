@@ -9,6 +9,7 @@ use VitesseCms\Core\Interfaces\InjectableInterface;
 use VitesseCms\Twitter\Listeners\Admin\AdminMenuListener;
 use VitesseCms\Twitter\Enums\SettingEnum;
 use VitesseCms\Twitter\Listeners\Fields\SocialShareListener;
+use VitesseCms\Twitter\Repositories\TweetRepository;
 use VitesseCms\Twitter\Services\TwitterService;
 
 class InitiateAdminListeners implements InitiateListenersInterface
@@ -31,7 +32,8 @@ class InitiateAdminListeners implements InitiateListenersInterface
                     $di->log
                 ),
                 $di->url,
-                $di->flash
+                $di->flash,
+                new TweetRepository()
             ));
         endif;
     }
