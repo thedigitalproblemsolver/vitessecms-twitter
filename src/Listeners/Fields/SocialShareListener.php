@@ -4,6 +4,7 @@ namespace VitesseCms\Twitter\Listeners\Fields;
 
 use Phalcon\Events\Event;
 use VitesseCms\Content\Models\Item;
+use VitesseCms\Core\Services\FlashService;
 use VitesseCms\Core\Services\UrlService;
 use VitesseCms\Datafield\Models\Datafield;
 use VitesseCms\Form\Interfaces\AbstractFormInterface;
@@ -24,10 +25,16 @@ class SocialShareListener
      */
     private $url;
 
-    public function __construct(TwitterService $twitterService, UrlService $urlService)
+    /**
+     * @var FlashService
+     */
+    private $flash;
+
+    public function __construct(TwitterService $twitterService, UrlService $urlService, FlashService $flashService)
     {
         $this->twitter = $twitterService;
         $this->url = $urlService;
+        $this->flash = $flashService;
     }
 
     public function buildItemFormElement(Event $event, AbstractFormInterface $form): void
@@ -37,8 +44,18 @@ class SocialShareListener
 
     public function beforeItemSave(Event $event, Item $item, Datafield $datafield): void
     {
-        if ($item->getBool(TwitterEnum::SHARE_ITEM)) :
-            $this->twitter->tweet($item->getNameField() . ' ' . $this->url->getBaseUri() . $item->getSlug());
+        if ($item->getBool(TwitterEnum::SHARE_ITEM) && !$item->has(TwitterEnum::TWEET_ID)) :
+            $tweet = $this->twitter->tweet($item->getNameField() . ' ' . $this->url->getBaseUri() . $item->getSlug());
+            if ($tweet !== null) :
+                $tweet->setItemId((string)$item->getId());
+                $tweet->save();
+
+                $item->set(TwitterEnum::TWEET_ID, $tweet->getTweetId());
+                $this->flash->setSucces('%TWITTER_TWEET_SENT%');
+            else :
+                $this->flash->setError('%TWITTER_TWEET_NOTSENT%');
+            endif;
+
             $item->set(TwitterEnum::SHARE_ITEM, null);
         endif;
     }

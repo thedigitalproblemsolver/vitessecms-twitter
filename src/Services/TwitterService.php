@@ -3,6 +3,9 @@
 namespace VitesseCms\Twitter\Services;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+use VitesseCms\Log\Services\LogService;
+use VitesseCms\Twitter\Factories\TweetFactory;
+use VitesseCms\Twitter\Models\Tweet;
 
 class TwitterService
 {
@@ -11,18 +14,27 @@ class TwitterService
      */
     private $twitterOauth;
 
-    public function __construct(TwitterOAuth $twitterOAuth)
+    /**
+     * @var LogService
+     */
+    private $log;
+
+    public function __construct(TwitterOAuth $twitterOAuth, LogService $logService)
     {
         $this->twitterOauth = $twitterOAuth;
+        $this->log = $logService;
     }
 
-    /**
-    * @return array|object
-    */
-    public function tweet(string $tweet)
+    public function tweet(string $tweet): ?Tweet
     {
-        return $this->twitterOauth->post("statuses/update",
-            ["status" => $tweet]
-        );
+        $result = $this->twitterOauth->post('statuses/update', ['status' => $tweet]);
+
+        if(isset($result->errors) && count($result->errors) > 0) :
+            $this->log->message('%TWITTER_TWEET_NOTSENT% : ' . $result->errors[0]->message);
+
+            return null;
+        endif;
+
+        return TweetFactory::createFromResult($result->id, $result->text);
     }
 }

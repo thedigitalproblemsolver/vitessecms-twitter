@@ -21,13 +21,17 @@ class InitiateAdminListeners implements InitiateListenersInterface
             && $di->setting->has(SettingEnum::TWITTER_CONSUMER_SECRET)
         ) :
             $di->eventsManager->attach(SocialShare::class, new SocialShareListener(
-                new TwitterService(new TwitterOAuth(
-                    $di->setting->get(SettingEnum::TWITTER_CONSUMER_KEY),
-                    $di->setting->get(SettingEnum::TWITTER_CONSUMER_SECRET),
-                    $di->setting->get(SettingEnum::TWITTER_OAUTH_TOKEN),
-                    $di->setting->get(SettingEnum::TWITTER_OAUTH_TOKENSECRET)
-                )),
-                $di->url
+                new TwitterService(
+                    new TwitterOAuth(
+                        $di->setting->get(SettingEnum::TWITTER_CONSUMER_KEY),
+                        $di->setting->get(SettingEnum::TWITTER_CONSUMER_SECRET),
+                        $di->setting->get(SettingEnum::TWITTER_OAUTH_TOKEN),
+                        $di->setting->get(SettingEnum::TWITTER_OAUTH_TOKENSECRET)
+                    ),
+                    $di->log
+                ),
+                $di->url,
+                $di->flash
             ));
         endif;
     }
