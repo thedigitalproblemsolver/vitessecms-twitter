@@ -35,6 +35,10 @@ class TwitterService
             return null;
         endif;
 
-        return TweetFactory::createFromResult($result->id, $result->text);
+        return TweetFactory::createFromResult(
+            $result->id,
+            $result->text,
+            'https://twitter.com/'.$result->user->name.'/status/'.$result->id
+        );
     }
 }

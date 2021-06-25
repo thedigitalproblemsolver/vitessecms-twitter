@@ -48,6 +48,8 @@ class SocialShareListener
             $tweet = $this->twitter->tweet($item->getNameField() . ' ' . $this->url->getBaseUri() . $item->getSlug());
             if ($tweet !== null) :
                 $tweet->setItemId((string)$item->getId());
+                $tweet->setPublished(true);
+                $tweet->set('name',$tweet->getText());
                 $tweet->save();
 
                 $item->set(TwitterEnum::TWEET_ID, $tweet->getTweetId());
@@ -55,8 +57,8 @@ class SocialShareListener
             else :
                 $this->flash->setError('%TWITTER_TWEET_NOTSENT%');
             endif;
-
-            $item->set(TwitterEnum::SHARE_ITEM, null);
         endif;
+
+        $item->set(TwitterEnum::SHARE_ITEM, null);
     }
 }

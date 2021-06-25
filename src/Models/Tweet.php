@@ -21,6 +21,11 @@ class Tweet extends AbstractCollection
      */
     public $itemId;
 
+    /**
+     * @var string
+     */
+    public $tweetUrl;
+
     public function setTweetId(int $tweetId): Tweet
     {
         $this->tweetId = $tweetId;
@@ -55,5 +60,17 @@ class Tweet extends AbstractCollection
     public function getItemId(): string
     {
         return $this->itemId;
+    }
+
+    public function getTweetUrl(): string
+    {
+        return $this->tweetUrl;
+    }
+
+    public function setTweetUrl(string $tweetUrl): Tweet
+    {
+        $this->tweetUrl = $tweetUrl;
+
+        return $this;
     }
 }

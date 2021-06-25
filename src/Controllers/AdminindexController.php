@@ -33,7 +33,8 @@ class AdminindexController extends AbstractAdminController
             $this->configuration->getVendorNameDir() . 'twitter/src/Resources/views/admin/',
             [
                 'form' => $form,
-                'settingsLink' => 'admin/setting/adminsetting/adminList?filter[name.nl]=twitter'
+                'settingsLink' => 'admin/setting/adminsetting/adminList?filter[name.nl]=twitter',
+                'tweetsLink' => 'admin/twitter/admintweet/adminList'
             ]
         ));
 
