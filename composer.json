@@ -1,0 +1,28 @@
+{
+  "name": "vitessecms/twitter",
+  "type": "library",
+  "description": "Twitter module for VitesseCms",
+  "keywords": ["php","phalcon","vitessecms"],
+  "homepage": "https://github.com/thedigitalproblemsolver/VitesseCMS",
+  "license": "GPL-2.0-or-later",
+  "version": "0.0.2",
+  "authors": [
+    {
+      "name": "Jasper Jaklofsky",
+      "email": "info@thedigitalproblemsolver.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "VitesseCms\\Spreadshirt\\": "src/"
+    }
+  },
+  "require": {
+    "vitessecms/core": "~0.2.12",
+    "vitessecms/admin": "~0.2.5",
+    "vitessecms/communication": "~0.2.11",
+    "vitessecms/form": "~0.2.7",
+    "vitessecms/setting": "~0.2.3",
+    "abraham/twitteroauth": "^2.0"
+  }
+}
