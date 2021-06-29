@@ -6,7 +6,7 @@ use VitesseCms\Admin\AbstractAdminController;
 use VitesseCms\Setting\Enum\TypeEnum;
 use VitesseCms\Setting\Factory\SettingFactory;
 use VitesseCms\Twitter\Enums\SettingEnum;
-use VitesseCms\Twitter\Forms\AdminIndexForm;
+use VitesseCms\Twitter\Forms\oAuthForm;
 
 class AdminindexController extends AbstractAdminController
 {
@@ -25,7 +25,7 @@ class AdminindexController extends AbstractAdminController
             || !$this->setting->has(SettingEnum::TWITTER_OAUTH_TOKEN,false)
             || !$this->setting->has(SettingEnum::TWITTER_OAUTH_TOKENSECRET,false)
         ):
-            $form = (new AdminIndexForm())->buildForm()->renderForm('admin/twitter/adminindex/parseadminindexform');
+            $form = (new oAuthForm())->buildForm()->renderForm('admin/twitter/adminindex/parseadminindexform');
         endif;
 
         $this->view->setVar('content', $this->view->renderTemplate(
