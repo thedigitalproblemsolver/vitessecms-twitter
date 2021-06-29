@@ -7,7 +7,7 @@ use VitesseCms\Form\Interfaces\FormWithRepositoryInterface;
 use VitesseCms\Form\Models\Attributes;
 use VitesseCms\Twitter\Enums\SettingEnum;
 
-class AdminIndexForm extends AbstractFormWithRepository
+class oAuthForm extends AbstractFormWithRepository
 {
     public function buildForm(): FormWithRepositoryInterface
     {
