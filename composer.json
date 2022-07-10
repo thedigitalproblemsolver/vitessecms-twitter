@@ -21,7 +21,7 @@
     "vitessecms/core": "~0.2.21",
     "vitessecms/admin": "~0.2.9",
     "vitessecms/communication": "~0.2.12",
-    "vitessecms/form": "~0.2.8",
+    "vitessecms/form": "~0.2.9",
     "vitessecms/setting": "~0.2.5",
     "abraham/twitteroauth": "^2.0"
   }
