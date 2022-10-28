@@ -18,11 +18,11 @@
     }
   },
   "require": {
-    "vitessecms/core": "~0.2.22",
+    "vitessecms/core": "~0.2.23",
     "vitessecms/admin": "~0.2.9",
     "vitessecms/communication": "~0.2.12",
-    "vitessecms/form": "~0.2.9",
-    "vitessecms/setting": "~0.2.5",
+    "vitessecms/form": "~0.2.10",
+    "vitessecms/setting": "~0.2.6",
     "abraham/twitteroauth": "^2.0"
   }
 }
