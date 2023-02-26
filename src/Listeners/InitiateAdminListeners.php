@@ -6,7 +6,7 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 use VitesseCms\Communication\Fields\SocialShare;
 use VitesseCms\Core\Interfaces\InitiateListenersInterface;
 use VitesseCms\Core\Interfaces\InjectableInterface;
-use VitesseCms\Export\Repositories\ItemRepository;
+use VitesseCms\Content\Repositories\ItemRepository;
 use VitesseCms\Twitter\Listeners\Admin\AdminMenuListener;
 use VitesseCms\Twitter\Enums\SettingEnum;
 use VitesseCms\Twitter\Listeners\Fields\SocialShareListener;
