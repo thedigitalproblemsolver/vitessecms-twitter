@@ -6,7 +6,7 @@ use Phalcon\Events\Event;
 use VitesseCms\Database\AbstractCollection;
 use VitesseCms\Database\Models\FindValue;
 use VitesseCms\Database\Models\FindValueIterator;
-use VitesseCms\Export\Repositories\ItemRepository;
+use VitesseCms\Content\Repositories\ItemRepository;
 use VitesseCms\Twitter\Enums\TwitterEnum;
 
 class TweetListener
