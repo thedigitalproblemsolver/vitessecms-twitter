@@ -27,6 +27,9 @@
     "vitessecms/communication": "^1.0.0",
     "vitessecms/form": "^1.0.0",
     "vitessecms/setting": "^1.0.0",
-    "abraham/twitteroauth": "^2.0"
+    "abraham/twitteroauth": "^2.0",
+    "twbs/bootstrap": "^5.2.3",
+    "seiyria/bootstrap-slider": "^4.8",
+    "itsjavi/bootstrap-colorpicker": "^3.4.0"
   }
 }
