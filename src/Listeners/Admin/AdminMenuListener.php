@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace VitesseCms\Twitter\Listeners\Admin;
 
@@ -13,6 +14,6 @@ class AdminMenuListener
         $children = new AdminMenuNavBarChildren();
         $children->addChild('Twitter', 'admin/twitter/adminindex/index');
 
-        $adminMenu->addDropdown('Communication', $children);
+        $adminMenu->addDropdown('Social media', $children);
     }
 }
